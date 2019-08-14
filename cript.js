@@ -47,17 +47,47 @@ var button1=document.querySelector("#p1");
 var button2=document.querySelector("#p2");
 var p1_display=document.querySelector("#p-1");
 var p2_display=document.querySelector("#p-2");
+var ok_button=document.querySelector("#confirm");
+var reset_but=document.querySelector("#reset");
+var numinput=document.querySelector("input");
+var winingscore=document.querySelector("p span");
 var p1_score=0;
 var p2_score=0;
+var gameover=false;
+
+ok_button.addEventListener("click",function(){
+    winingscore.textContent=numinput.value;
+
+})
+
 
 button1.addEventListener("click",function(){
-    alert("asdnkcasd asv");
-    // p1_score+=1;
-    // p1_display.textContent=p1_score;
-
+    if(!gameover){
+        p1_score += 1;
+        if(p1_score==numinput.value){
+            p1_display.classList.add("winner");
+            gameover=true;
+        }
+        p1_display.textContent = p1_score;
+    }
 });
 button2.addEventListener("click",function(){
-    // p2_score += 1;
-    // p2_display.textContent = p2_score;
-
+    if (!gameover) {
+        p2_score += 1;
+        if (p2_score == numinput.value) {
+            p2_display.classList.add("winner");
+            gameover = true;
+        }
+        p2_display.textContent = p2_score;
+    }
 });
+reset_but.addEventListener("click",function(){                                                winingscore.textContent=0;
+p1_display.textContent=0;
+p2_display.textContent=0;
+p1_score=0;
+p2_score=0;
+gameover=false;
+p1_display.classList.remove("winner");
+p2_display.classList.remove("winner");
+
+})
